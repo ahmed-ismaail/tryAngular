@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service'
 
 @Component({
   selector: 'app-testing-list',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestingListComponent implements OnInit {
 
-  constructor() { }
+  brews: Object = '';
 
-  ngOnInit(): void {
+  constructor(private http: HttpService) { }
+
+  ngOnInit() {
+    this.http.getBear().subscribe(data => {
+      this.brews = data
+      console.log(this.brews);
+    }
+  );
   }
 
 }
